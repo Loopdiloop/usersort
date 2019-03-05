@@ -1,4 +1,7 @@
-# where to load the gainshifts from; one can also use:
+import numpy as np
+
+
+main_str = """# where to load the gainshifts from; one can also use:
 #   parameter gain_e = ...
 # and so on
 #gain file gainshifts_013.dat
@@ -118,49 +121,49 @@ parameter ppac_efficiency = 0.48
 data directory ../master_data/raw
 
 #maximum number of buffers to read for each file; for testing
-#max_buffers 1
+#max_buffers 1 
+"""
 
-#186W ALL FILES
-#data file sirius-20160420-135618.data 
-#data file sirius-20160420-171400.data 
-#data file sirius-20160420-182451.data
-#data file sirius-20160420-233716.data
-#data file sirius-20160421-091709.data
-#data file sirius-20160421-100724.data
-#data file sirius-20160421-224045.data
-#data file sirius-20160422-081940.data
-data file sirius-20160422-093300-big-000.data
-data file sirius-20160422-093300-big-001.data
-data file sirius-20160422-093300.data
-#data file sirius-20160422-122054.data
-#data file sirius-20160422-124416.data
-#data file sirius-20160422-180843.data
-#data file sirius-20160423-073059.data
-#data file sirius-20160423-160731.data
-#data file sirius-20160423-173835.data
-#data file sirius-20160423-213756.data
-#data file sirius-20160424-104217.data
-#data file sirius-20160424-160703.data
-#data file sirius-20160424-223103.data
-#data file sirius-20160425-075414.data
-#data file sirius-20160425-120131.data
-#data file sirius-20160425-203224.data
-#data file sirius-20160425-222023.data
-#data file sirius-20160426-104456.data
-#data file sirius-20160426-120853.data
-#data file sirius-20160426-141446.data
-#data file sirius-20160426-230123.data
-#data file sirius-20160427-033555.data
-#data file sirius-20160428-091134.data
-#data file sirius-20160428-122211.data
-#data file sirius-20160428-173419.data
-#data file sirius-20160428-230248.data
-#data file sirius-20160429-070605.data
-#data file sirius-20160429-094446-big-000.data
-#data file sirius-20160429-094446-big-001.data
-#data file sirius-20160429-094446-big-002.data
-#data file sirius-20160429-094446-big-003.data
-#data file sirius-20160429-094446.data
+files = ["""sirius-20160420-135618.data""",
+"""sirius-20160420-171400.data""", 
+"""sirius-20160420-182451.data""",
+"""sirius-20160420-233716.data""",
+"""sirius-20160421-091709.data""",
+"""sirius-20160421-100724.data""",
+"""sirius-20160421-224045.data""",
+"""sirius-20160422-081940.data""", 
+"""sirius-20160422-093300.data
+sirius-20160422-093300-big-0,00.data
+sirius-20160422-093300-big-0,01.data""",
+"""sirius-20160422-122054.data""",
+"""sirius-20160422-124416.data""",
+"""sirius-20160422-180843.data""",
+"""sirius-20160423-073059.data""",
+"""sirius-20160423-160731.data""",
+"""sirius-20160423-173835.data""",
+"""sirius-20160423-213756.data""",
+"""sirius-20160424-104217.data""",
+"""sirius-20160424-160703.data""",
+"""sirius-20160424-223103.data""",
+"""sirius-20160425-075414.data""",
+"""sirius-20160425-120131.data""",
+"""sirius-20160425-203224.data""",
+"""sirius-20160425-222023.data""",
+"""sirius-20160426-104456.data""",
+"""sirius-20160426-120853.data""",
+"""sirius-20160426-141446.data""",
+"""sirius-20160426-230123.data""",
+"""sirius-20160427-033555.data""",
+"""sirius-20160428-091134.data""",
+"""sirius-20160428-122211.data""",
+"""sirius-20160428-173419.data""",
+"""sirius-20160428-230248.data""",
+"""sirius-20160429-070605.data""",
+"""sirius-20160429-094446.data
+sirius-20160429-094446-big-000.data
+sirius-20160429-094446-big-001.data
+sirius-20160429-094446-big-002.data
+sirius-20160429-094446-big-003.data"""]
 
 
 
@@ -171,7 +174,10 @@ data file sirius-20160422-093300.data
 
 # at the end, spectra are dumped to the root file
 # root output file
-export root W186_raw_sirius-20160422-093300.data.root
+export root W186_raw_"""sirius-20160422-093300.data""",.root
+
+
+
 
 
 
