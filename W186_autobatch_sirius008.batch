@@ -1,13 +1,4 @@
-
-""" 
-Script for automating the generation of batch files for usersort at OCL.
-Why do it easily when you can automate it?
-
-"""
-
-import sys
-
-main_str_1 = """# where to load the gainshifts from; one can also use:
+# where to load the gainshifts from; one can also use:
 #   parameter gain_e = ...
 # and so on
 #gain file gainshifts_013.dat
@@ -61,23 +52,23 @@ parameter thick_range = 130 15 0
 
 # Fit of rkinz column 1 as function of rkinz column 6. No. Using Qkinz.
 #  186W (alpha, d gamma) 188Re, 30MeV. Strip 0-7 in that order. Deutron-data! [keV]
-parameter ex_from_ede    = 1.4551283e+4 -1.000915 -8.04e-7 \\
-1.4556803e+4 -1.000073 -8.18e-7 \\
-1.4561938e+4 -9.999144e-1 -8.33e-7 \\
-1.4567338e+4 -9.98259e-1 -8.45e-7 \\
-1.4572350e+4 -9.97292e-1 -8.60e-7 \\
-1.4576298e+4 -9.96112e-1 -8.82e-7 \\
-1.4580493e+4 -9.94982e-1 -9.00e-7 \\
+parameter ex_from_ede    = 1.4551283e+4 -1.000915 -8.04e-7 \
+1.4556803e+4 -1.000073 -8.18e-7 \
+1.4561938e+4 -9.999144e-1 -8.33e-7 \
+1.4567338e+4 -9.98259e-1 -8.45e-7 \
+1.4572350e+4 -9.97292e-1 -8.60e-7 \
+1.4576298e+4 -9.96112e-1 -8.82e-7 \
+1.4580493e+4 -9.94982e-1 -9.00e-7 \
 1.4584253e+4 -9.93772e-1 -9.21e-7
 
 # empirical excitation energy correction for the above, e.g. from known peaks
-parameter ex_corr_exp    =  0 1 \\
-    0 1 \\
-    0 1 \\
-    0 1 \\
-    0 1 \\
-    0 1 \\
-    0 1 \\
+parameter ex_corr_exp    =  0 1 \
+    0 1 \
+    0 1 \
+    0 1 \
+    0 1 \
+    0 1 \
+    0 1 \
     0 1
 
 # NaI time gates, for making the ALFNA matrices 
@@ -85,9 +76,9 @@ parameter ex_corr_exp    =  0 1 \\
 # down to the x-axis/m_nai_e_t_c x-axis plot 
 # remember to subtract the same amount of channels 
 # as the ones that are filled, and make sure you "hit" a top!
-# parameter = lower cut of prompt ,     higher gate of prompt peak,  \\
+# parameter = lower cut of prompt ,     higher gate of prompt peak,  \
 #             lower cut on backgr.,     higher cut backgr.
-parameter nai_time_cuts = 190 220 \\
+parameter nai_time_cuts = 190 220 \
                           300 330
 
 ############## Attention when no PPACs are used ###########################
@@ -104,10 +95,10 @@ parameter channel_PPAC = 4 12 30 31
 # time gates of the ppacs are found from the fission blob 
 # in the m_siri_e_t_ppac plot (fission blob in tPPAC vs E_SiRi gate)
 # - time gates from the y-axis, and energy from the x-axis
-# parameter = lower cut of prompt ,     higher gate of prompt peak,  \\
+# parameter = lower cut of prompt ,     higher gate of prompt peak,  \
 #             lower cut on backgr.,     higher cut backgr.
 # ### comment out this line(s) if no PPACs are used
-#parameter ppac_time_cuts = 190 200 \\
+#parameter ppac_time_cuts = 190 200 \
 #                           290 300
 
 # Energy gate on fission
@@ -128,79 +119,14 @@ data directory ../master_data/raw
 
 #maximum number of buffers to read for each file; for testing
 #max_buffers 1 
-"""
-
-filenames = ["""data file sirius-20160420-135618.data""",
-"""data file sirius-20160420-171400.data""", 
-"""data file sirius-20160420-182451.data""",
-"""data file sirius-20160420-233716.data""",
-"""data file sirius-20160421-091709.data""",
-"""data file sirius-20160421-100724.data""",
-"""data file sirius-20160421-224045.data""",
-"""data file sirius-20160422-081940.data""", 
-"""data file sirius-20160422-093300.data
+data file sirius-20160422-093300.data
 data file sirius-20160422-093300-big-000.data
-data file sirius-20160422-093300-big-001.data""",
-"""data file sirius-20160422-122054.data""",
-"""data file sirius-20160422-124416.data""",
-"""data file sirius-20160422-180843.data""",
-"""data file sirius-20160423-073059.data""",
-"""data file sirius-20160423-160731.data""",
-"""data file sirius-20160423-173835.data""",
-"""data file sirius-20160423-213756.data""",
-"""data file sirius-20160424-104217.data""",
-"""data file sirius-20160424-160703.data""",
-"""data file sirius-20160424-223103.data""",
-"""data file sirius-20160425-075414.data""",
-"""data file sirius-20160425-120131.data""",
-"""data file sirius-20160425-203224.data""",
-"""data file sirius-20160425-222023.data""",
-"""data file sirius-20160426-104456.data""",
-"""data file sirius-20160426-120853.data""",
-"""data file sirius-20160426-141446.data""",
-"""data file sirius-20160426-230123.data""",
-"""data file sirius-20160427-033555.data""",
-"""data file sirius-20160428-091134.data""",
-"""data file sirius-20160428-122211.data""",
-"""data file sirius-20160428-173419.data""",
-"""data file sirius-20160428-230248.data""",
-"""data file sirius-20160429-070605.data""",
-"""data file sirius-20160429-094446.data
-data file sirius-20160429-094446-big-000.data
-data file sirius-20160429-094446-big-001.data
-data file sirius-20160429-094446-big-002.data
-data file sirius-20160429-094446-big-003.data"""]
-
-
-main_str_2 = """
+data file sirius-20160422-093300-big-001.data
 # Write to MAMA matrix 
 #export mama h_ex_f0 h_ex_f0_MAMA
 #export mama m_alfna alfna
 #export mama m_alfna_bg alfna_bg
 
 # at the end, spectra are dumped to the root file
-# root output file """
-try:
-    i = int(sys.argv[1])
-except:
-    sys.exit("Error. Got no input on which file to run. Len(filenames) = %d"% len(filenames))
-outputfilename = "W186_autogenerated_%03d"%i
-export_str = """
-export root """ + outputfilename + ".root"
-
-metadata = open("fileinfo.txt", "a+")
-metadata.write(filenames[i] + " ---> " + outputfilename + ".root")
-metadata.close()
-
-batchfile = open("W186_autobatch_sirius%03d.batch"%i, "w+") # write and create new 
-batchfile.write(main_str_1)
-batchfile.write(filenames[i])
-batchfile.write(main_str_2)
-batchfile.write(export_str)
-batchfile.close()
-
-
-
-
-
-
+# root output file 
+export root 186W_autogenerated_008.root
