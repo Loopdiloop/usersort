@@ -1,8 +1,8 @@
 # where to load the gainshifts from; one can also use:
 #   parameter gain_e = ...
 # and so on
-#gain file gainshifts_013.dat
-gain file gainshifts_plain.dat
+gain file gainshifts_W186_firstcalibration_p_tri.dat
+#gain file gainshifts_plain.dat
 
 
 # (constant fraction) cactus energy correction parameters for cactus time
@@ -32,9 +32,10 @@ rangefile zrange_d.dat
 # in the down, left corner of the banana. 
 # Contains E-minimum 1, DE-minimum 1, E-minimum 2, DE-minimum 2.
 # Including Z=1 particles:
-parameter ede_rect  = 500 250 30 500
+#parameter ede_rect  = 500 250 30 500
 # Excluding Z=1 particles:
 #parameter ede_rect  = 500 2500 2000 2500
+parameter ede_rect  = 300 120 15 300
 
 # Thickness gate for proton banana
 # parameter thick_range = 82 12 0

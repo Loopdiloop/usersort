@@ -23,7 +23,7 @@
 //! must be 0 to disable making time evolution plots
 // This is to check, for example, if the elastic peak or a gamma peak 
 // (which is more likely) moves during the experiment
-#define MAKE_TIME_EVOLUTION_PLOTS 1
+#define MAKE_TIME_EVOLUTION_PLOTS 0
 
 //! must be 0 to disable making CACTUS time-energy plots
 // Makes plots of type m_nai_e_t_0...27
@@ -212,7 +212,7 @@ bool UserXY::Command(const std::string& cmd)
     ppac_efficiency ( GetParameters(), "ppac_efficiency", 1 )
 #endif /* USE_FISSION_PARAMETERS */
  {
-     ede_rect.Set( "500 250 30 500" );
+     ede_rect.Set( "300 120 20 300" ); //( "500 250 30 500" ); XXXXXXXXX
      thick_range.Set( "130  13 0" );
 }
 
@@ -647,7 +647,7 @@ bool UserXY::Sort(const Event& event)
         const unsigned int raw = event.de[i].adc;
         const float de_cal = calib( raw, gain_de[id], shift_de[id] );
 //        if(de_cal < 540)    // to exclude noise events, 106Cd exp.
-        if(de_cal < 200)
+        if(de_cal < 5) //CHANGED HERE FROM 200 TO 5 XXXXXXXX
             continue;
         
         m_front->Fill( (int)de_cal, id );   

@@ -10,8 +10,8 @@ import sys
 main_str_1 = """# where to load the gainshifts from; one can also use:
 #   parameter gain_e = ...
 # and so on
-#gain file gainshifts_013.dat
-gain file gainshifts_plain.dat
+gain file gainshifts_W186_firstcalibration_p_tri.dat
+#gain file gainshifts_plain.dat
 
 
 # (constant fraction) cactus energy correction parameters for cactus time
