@@ -10,6 +10,8 @@
 !/lib
 !Readme.md
 !zrange*
+!*.py
+!Qkinz_W186_alpha_30MeV/
 # etc...
 
 # ignore orject files
