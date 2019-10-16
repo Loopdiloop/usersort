@@ -212,8 +212,8 @@ bool UserXY::Command(const std::string& cmd)
     ppac_efficiency ( GetParameters(), "ppac_efficiency", 1 )
 #endif /* USE_FISSION_PARAMETERS */
  {
-     ede_rect.Set( "300 120 20 300" ); //( "500 250 30 500" ); XXXXXXXXX
-     thick_range.Set( "130  13 0" );
+     ede_rect.Set( "200 50 15 200" ); /// XXXXXXXXXXXXXX "500 250 30 500"
+     thick_range.Set( "170  20 0" ); // XXXXXXXXx  "130  13 0"
 }
 
 
@@ -224,7 +224,7 @@ bool UserXY::Command(const std::string& cmd)
 //    const int max_e = 20000, max_de = 10000;
     //Changed the maximum energy (x axis) and maximum delta energy (y axis) into something sensible for this plot
     //Don´t have to zoome like crazy everytime I make a particle spectrum :)
-    const int max_e = 17000, max_de = 6000;
+    const int max_e = 40000, max_de = 20000; // 17000 6000 XXXXXXXXXXXXXXXXXXXXX to see alpha in Ni
 
      m_back = Mat( "m_back", "back detector energies",
                   2000, 0, max_e, "E(Si) [keV]", 8, 0, 8, "detector nr." );
@@ -256,8 +256,8 @@ bool UserXY::Command(const std::string& cmd)
      m_e_de = Mat( "m_e_de", "#DeltaE : E for all detectors together",
                    500, 0, max_e, "E(Si) [keV]", 500, 0, max_de, "#DeltaE(Si) [keV]" );
 
-     //m_e_de_fiss = Mat( "m_e_de_fiss", "#DeltaE : E in coincidence with fission",
-     //                   500, 0, max_e, "E(Si) [keV]", 500, 0, max_de, "#DeltaE(Si) [keV]" );
+     m_e_de_fiss = Mat( "m_e_de_fiss", "#DeltaE : E in coincidence with fission",
+                         500, 0, max_e, "E(Si) [keV]", 500, 0, max_de, "#DeltaE(Si) [keV]" );
      m_e_de_nofiss = Mat( "m_e_de_nofiss", "#DeltaE : E veto for fission",
                          500, 0, max_e, "E(Si) [keV]", 500, 0, max_de, "#DeltaE(Si) [keV]" );
      m_e_de_thick = Mat( "m_e_de_thick", "#DeltaE : E for all detectors together, gated on thickness",
@@ -745,7 +745,7 @@ bool UserXY::Sort(const Event& event)
  #endif /* MAKE_INDIVIDUAL_E_DE_PLOTS */
    
      // fit of kinz Ex(E+DE)
-     const float ex_theo = ex_from_ede[3*dei+0] + (ede)*(ex_from_ede[3*dei+1] + (ede*ede)*ex_from_ede[3*dei+2]);
+     const float ex_theo = ex_from_ede[3*dei+0] + (ede)*(ex_from_ede[3*dei+1] + (ede)*ex_from_ede[3*dei+2]); // ede*ede
      //const float ex_theo = ex_from_ede.Poly(ede, 3*dei, 3);
 
      // make experimental corrections
