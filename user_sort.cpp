@@ -212,8 +212,8 @@ bool UserXY::Command(const std::string& cmd)
     ppac_efficiency ( GetParameters(), "ppac_efficiency", 1 )
 #endif /* USE_FISSION_PARAMETERS */
  {
-     ede_rect.Set( "200 50 15 200" ); /// XXXXXXXXXXXXXX "500 250 30 500"
-     thick_range.Set( "170  20 0" ); // XXXXXXXXx  "130  13 0"
+     ede_rect.Set( "200 50 15 200" ); /// XXX "500 250 30 500"
+     thick_range.Set( "170  20 0" ); // XXX  "130  13 0"
 }
 
 
@@ -224,7 +224,7 @@ bool UserXY::Command(const std::string& cmd)
 //    const int max_e = 20000, max_de = 10000;
     //Changed the maximum energy (x axis) and maximum delta energy (y axis) into something sensible for this plot
     //Don´t have to zoome like crazy everytime I make a particle spectrum :)
-    const int max_e = 40000, max_de = 20000; // 17000 6000 XXXXXXXXXXXXXXXXXXXXX to see alpha in Ni
+    const int max_e = 40000, max_de = 20000; // 17000 6000 XXX to see alpha in Ni
 
      m_back = Mat( "m_back", "back detector energies",
                   2000, 0, max_e, "E(Si) [keV]", 8, 0, 8, "detector nr." );
@@ -647,7 +647,7 @@ bool UserXY::Sort(const Event& event)
         const unsigned int raw = event.de[i].adc;
         const float de_cal = calib( raw, gain_de[id], shift_de[id] );
 //        if(de_cal < 540)    // to exclude noise events, 106Cd exp.
-        if(de_cal < 5) //CHANGED HERE FROM 200 TO 5 XXXXXXXX
+        if(de_cal < 5) //CHANGED HERE FROM 200 TO 5 XXX
             continue;
         
         m_front->Fill( (int)de_cal, id );   
